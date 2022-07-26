@@ -26,13 +26,23 @@
     </div>
 
     <script>
-        var map;
+        function serriJoke() {
 
-        function initMap() {
-            map = new serri.
+            const xml = new XMLHttpRequest();
+            xml.open("GET", 'serrijoke.php');
+            xml.onload = function() {
+                const serriJoke = JSON.parse(xml.responseText);
+                let content = document.getElementsByClassName('content')[0];
+                content.innerHTML =
+                    `                
+   <h3 class="id_joke">${serriJoke.joke}</h3>
+   `;
+            };
+            xml.send();
         }
+        serriJoke();
     </script>
-    <script src="http://api.serri.codefactory.live/random/=initMap" async defer></script>
+
 </body>
 
 </html>
